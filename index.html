@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mulwanyi International — Construction &amp; Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#111113;
+    --charcoal:#1b1c1f;
+    --charcoal-2:#232428;
+    --gold:#c9972f;
+    --gold-bright:#e0b34a;
+    --off-white:#f4f2ec;
+    --line:rgba(201,151,47,0.28);
+    --line-soft:rgba(244,242,236,0.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--off-white);
+    color:var(--black);
+    font-family:'Source Sans 3',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.1rem 2.5rem;
+    background:rgba(17,17,19,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{display:flex;align-items:center;gap:0.7rem;}
+  .brand img{height:42px;width:auto;}
+  .brand-text{color:var(--off-white);font-family:'Oswald',sans-serif;font-size:0.95rem;letter-spacing:0.06em;line-height:1.1;}
+  .brand-text small{display:block;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:0.6rem;letter-spacing:0.12em;margin-top:2px;}
+  nav ul{list-style:none;display:flex;gap:2.2rem;}
+  nav a{
+    color:var(--off-white);font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    position:relative;padding-bottom:4px;
+  }
+  nav a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width 0.25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .nav-toggle span{width:24px;height:2px;background:var(--off-white);}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(201,151,47,0.10), transparent 55%),
+      var(--black);
+    padding:8rem 1.5rem 4rem;
+    overflow:hidden;
+  }
+  .blueprint-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(ellipse at 50% 40%, black 10%, transparent 72%);
+    opacity:0.9;
+  }
+  .crosshair{position:absolute;width:26px;height:26px;opacity:0.5;}
+  .crosshair::before,.crosshair::after{content:"";position:absolute;background:var(--gold);}
+  .crosshair::before{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%);}
+  .crosshair::after{top:50%;left:0;height:1px;width:100%;transform:translateY(-50%);}
+  .ch1{top:14%;left:10%;} .ch2{top:22%;right:12%;} .ch3{bottom:18%;left:16%;} .ch4{bottom:26%;right:9%;}
+
+  .hero-logo{width:150px;margin:0 auto 1.6rem;position:relative;z-index:2;filter:drop-shadow(0 0 26px rgba(201,151,47,0.25));}
+  .hero .eyebrow{color:var(--gold);margin-bottom:1rem;position:relative;z-index:2;}
+  .hero h1{
+    color:var(--off-white);
+    font-size:clamp(2.4rem,6vw,4.6rem);
+    line-height:1.05;
+    position:relative;z-index:2;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero .tagline{
+    color:var(--off-white);opacity:0.75;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;
+    margin-top:1.4rem;position:relative;z-index:2;
+  }
+  .hero .rule{width:70px;height:1px;background:var(--gold);margin:1.6rem auto;position:relative;z-index:2;}
+  .cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;position:relative;z-index:2;}
+  .btn{
+    display:inline-block;padding:0.95rem 2.1rem;
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;
+    border:1px solid var(--gold);transition:all 0.25s ease;
+  }
+  .btn-solid{background:var(--gold);color:var(--black);}
+  .btn-solid:hover{background:var(--gold-bright);}
+  .btn-outline{color:var(--off-white);}
+  .btn-outline:hover{background:rgba(201,151,47,0.12);}
+
+  .scroll-cue{
+    position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+    color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+    letter-spacing:0.2em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+    z-index:2;
+  }
+  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:7rem 2.5rem;position:relative;}
+  .section-inner{max-width:1140px;margin:0 auto;}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--gold);display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;
+  }
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);}
+  h2.section-title{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:2.6rem;max-width:680px;}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--off-white);}
+  .about-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:start;}
+  .letter{
+    background:var(--charcoal);color:var(--off-white);
+    padding:2.8rem 2.6rem;position:relative;border-left:3px solid var(--gold);
+  }
+  .letter p{margin-bottom:1.2rem;font-weight:300;font-size:1.02rem;color:rgba(244,242,236,0.92);}
+  .letter p:last-of-type{margin-bottom:0;}
+  .signature{margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+  .signature .name{font-family:'Oswald',sans-serif;color:var(--gold);letter-spacing:0.04em;font-size:1.05rem;}
+  .signature .role{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.65;margin-top:2px;}
+
+  .pillars{display:flex;flex-direction:column;gap:1.6rem;}
+  .pillar{display:flex;gap:1.1rem;padding-bottom:1.6rem;border-bottom:1px solid rgba(17,17,19,0.1);}
+  .pillar:last-child{border-bottom:none;}
+  .pillar .num{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:0.85rem;padding-top:2px;}
+  .pillar h3{font-size:1.05rem;margin-bottom:0.35rem;letter-spacing:0.02em;}
+  .pillar p{font-size:0.92rem;color:#4a4a4a;}
+
+  /* ===== FOUNDER PHOTO ===== */
+  .signature{display:flex;align-items:center;gap:1rem;margin-top:2rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+  .signature img{
+    width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top center;
+    border:1px solid var(--gold);flex-shrink:0;
+  }
+
+  /* ===== PROJECTS / GALLERY ===== */
+  .projects{background:var(--off-white);}
+  .project-feature{
+    display:grid;grid-template-columns:1.15fr 1fr;gap:0;
+    border:1px solid rgba(17,17,19,0.12);margin-bottom:1px;
+  }
+  .project-feature img{width:100%;height:100%;object-fit:cover;min-height:320px;}
+  .project-feature .project-copy{
+    background:var(--charcoal);color:var(--off-white);
+    padding:2.6rem;display:flex;flex-direction:column;justify-content:center;
+  }
+  .project-feature .project-copy .tag{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--gold);letter-spacing:0.12em;margin-bottom:0.8rem;display:block;}
+  .project-feature .project-copy h3{font-size:1.3rem;margin-bottom:0.7rem;}
+  .project-feature .project-copy p{color:rgba(244,242,236,0.7);font-size:0.92rem;font-weight:300;}
+
+  .site-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:rgba(17,17,19,0.12);border:1px solid rgba(17,17,19,0.12);margin-top:1px;
+  }
+  .site-shot{position:relative;overflow:hidden;aspect-ratio:1/1;background:var(--black);}
+  .site-shot img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;}
+  .site-shot:hover img{transform:scale(1.06);}
+  .site-shot .cap{
+    position:absolute;left:0;right:0;bottom:0;padding:0.7rem 0.9rem;
+    background:linear-gradient(to top, rgba(17,17,19,0.85), transparent);
+    color:var(--off-white);font-family:'JetBrains Mono',monospace;
+    font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;
+  }
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--black);color:var(--off-white);}
+  .services .section-title{color:var(--off-white);}
+  .services .eyebrow{color:var(--gold);}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border-top:1px solid var(--line-soft);border-left:1px solid var(--line-soft);
+  }
+  .service-card{
+    border-right:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+    padding:2.2rem 1.8rem;transition:background 0.25s ease;
+  }
+  .service-card:hover{background:var(--charcoal-2);}
+  .service-card .tag{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.12em;margin-bottom:0.9rem;display:block;}
+  .service-card h3{font-size:1.02rem;margin-bottom:0.6rem;letter-spacing:0.02em;}
+  .service-card p{font-size:0.88rem;color:rgba(244,242,236,0.65);font-weight:300;}
+
+  /* ===== REAL ESTATE ===== */
+  .estate{background:var(--off-white);}
+  .estate-wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:1px solid rgba(17,17,19,0.12);
+  }
+  .estate-copy{padding:3.4rem;}
+  .estate-copy p{color:#4a4a4a;margin-bottom:1.1rem;font-weight:300;}
+  .estate-visual{
+    background:var(--charcoal);color:var(--off-white);
+    padding:3.4rem;display:flex;flex-direction:column;justify-content:center;
+    background-image:
+      linear-gradient(var(--line-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+    background-size:32px 32px;
+  }
+  .stat{margin-bottom:1.8rem;}
+  .stat:last-child{margin-bottom:0;}
+  .stat .mono{color:var(--gold);}
+  .stat h3{font-size:1.6rem;margin-top:0.3rem;}
+
+  /* ===== CONTACT ===== */
+  .contact{background:var(--black);color:var(--off-white);text-align:center;}
+  .contact .section-inner{max-width:640px;}
+  .contact h2{color:var(--off-white);}
+  .contact p{color:rgba(244,242,236,0.7);font-weight:300;margin-bottom:2.2rem;}
+  .contact-details{
+    display:flex;justify-content:center;gap:2.6rem;flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;font-size:0.78rem;letter-spacing:0.05em;
+    margin-bottom:2.4rem;color:var(--gold);
+  }
+  .contact-details span{display:block;color:rgba(244,242,236,0.5);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.4rem;}
+
+  footer{
+    background:var(--black);border-top:1px solid var(--line);
+    padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;
+    color:rgba(244,242,236,0.45);font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.06em;
+    flex-wrap:wrap;gap:1rem;
+  }
+
+  @media (max-width:900px){
+    nav ul{display:none;}
+    .nav-toggle{display:flex;}
+    .about-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .estate-wrap{grid-template-columns:1fr;}
+    .project-feature{grid-template-columns:1fr;}
+    .site-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:560px){
+    header{padding:1rem 1.2rem;}
+    section{padding:5rem 1.3rem;}
+    .service-grid{grid-template-columns:1fr;}
+    .brand-text{font-size:0.8rem;}
+    .site-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    .scroll-cue .line{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <img src="logo.png" alt="Mulwanyi International logo">
+    <div class="brand-text">Mulwanyi International<small>Construction &amp; Real Estate</small></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#estate">Real Estate</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="blueprint-grid"></div>
+  <div class="crosshair ch1"></div>
+  <div class="crosshair ch2"></div>
+  <div class="crosshair ch3"></div>
+  <div class="crosshair ch4"></div>
+  <img class="hero-logo" src="logo.png" alt="Mulwanyi International">
+  <div class="eyebrow mono" style="justify-content:center;">Est. Uganda — Civil Engineering &amp; Real Estate</div>
+  <h1>Building Dreams,<br><span>Creating Legacies.</span></h1>
+  <div class="rule"></div>
+  <p class="tagline">Civil Engineering &nbsp;·&nbsp; Architecture &nbsp;·&nbsp; Real Estate</p>
+  <div class="cta-row">
+    <a href="#contact" class="btn btn-solid">Request a Consultation</a>
+    <a href="#services" class="btn btn-outline">View Services</a>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="eyebrow">Our Story</div>
+    <h2 class="section-title">Why Mulwanyi International exists</h2>
+    <div class="about-grid">
+      <div class="letter">
+        <p>Mulwanyi International was born from my passion for construction and my desire to contribute to the development of my community. As someone who has trained and worked in the construction industry, I have seen both the opportunities and challenges people face when trying to access quality, affordable construction services. This inspired me to build a company that combines professionalism, quality workmanship and affordability.</p>
+        <p>Our goal is to serve individuals, families, businesses, property developers and communities by providing reliable construction and real estate solutions that people can trust. I want Mulwanyi International to grow beyond just a construction company — to become a company that creates jobs, develops communities and turns people's dreams of owning quality property into reality.</p>
+        <p>The vision is simple: build with integrity, deliver quality and make construction accessible to more people.</p>
+        <div class="signature">
+          <img src="founder.png" alt="Mulwanyi David Joshua, Founder">
+          <div>
+            <div class="name">Mulwanyi David Joshua</div>
+            <div class="role">Founder, Mulwanyi International</div>
+          </div>
+        </div>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="num">01</div>
+          <div><h3>Integrity first</h3><p>Every project is delivered honestly — clear scopes, fair pricing and no shortcuts on quality.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="num">02</div>
+          <div><h3>Accessible quality</h3><p>Professional-grade construction and design shouldn't be out of reach — we build it into every quote.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="num">03</div>
+          <div><h3>Community-driven</h3><p>Beyond structures, we aim to create jobs and develop the communities we build in.</p></div>
+        </div>
+        <div class="pillar">
+          <div class="num">04</div>
+          <div><h3>End-to-end capability</h3><p>From land survey to final finish, one team carries your project through every stage.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="eyebrow">What We Do</div>
+    <h2 class="section-title">Scope of services</h2>
+    <div class="service-grid">
+      <div class="service-card"><span class="tag">01 / Structural</span><h3>Civil Engineering Works</h3><p>Foundations, structural works and general civil construction handled to code and to standard.</p></div>
+      <div class="service-card"><span class="tag">02 / Design</span><h3>Engineering Software &amp; Design</h3><p>AutoCAD and engineering software support for accurate drawings, plans and technical documentation.</p></div>
+      <div class="service-card"><span class="tag">03 / Design</span><h3>Architecture</h3><p>Architectural design that balances functionality, aesthetics and your budget.</p></div>
+      <div class="service-card"><span class="tag">04 / Installations</span><h3>Plumbing — Interior &amp; Exterior</h3><p>Full plumbing design and installation for residential and commercial properties, inside and out.</p></div>
+      <div class="service-card"><span class="tag">05 / Installations</span><h3>Electrical Installations</h3><p>Safe, code-compliant electrical wiring and installation for new builds and renovations.</p></div>
+      <div class="service-card"><span class="tag">06 / Advisory</span><h3>Site Visits &amp; Inspections</h3><p>On-site assessments to evaluate progress, feasibility and compliance before and during works.</p></div>
+      <div class="service-card"><span class="tag">07 / Advisory</span><h3>Consultancy Services</h3><p>Independent technical advice for individuals, developers and businesses planning a build.</p></div>
+      <div class="service-card"><span class="tag">08 / Surveying</span><h3>Quantity Surveying</h3><p>Accurate cost estimation, budgeting and materials take-off to keep projects on budget.</p></div>
+      <div class="service-card"><span class="tag">09 / Surveying</span><h3>Land Surveying</h3><p>Boundary, topographic and site surveys to give every project a reliable technical foundation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-inner">
+    <div class="eyebrow">Featured Work</div>
+    <h2 class="section-title">From design to delivery</h2>
+
+    <div class="project-feature">
+      <img src="render-day.jpg" alt="Residential architectural render, daytime">
+      <div class="project-copy">
+        <span class="tag">Architectural Design</span>
+        <h3>Residential Development — Concept Render</h3>
+        <p>Full architectural visualization for a two-storey residential build, from stonework detailing to roofline, produced before ground was broken.</p>
+      </div>
+    </div>
+    <div class="project-feature">
+      <div class="project-copy" style="order:2;">
+        <span class="tag">Architectural Design</span>
+        <h3>Same Design — Night &amp; Landscape View</h3>
+        <p>The same residence rendered with full landscaping, pool and exterior lighting — showing clients the finished lifestyle, not just the structure.</p>
+      </div>
+      <img src="render-night-1.jpg" alt="Residential architectural render, night with pool" style="order:1;">
+    </div>
+
+    <div class="site-grid">
+      <div class="site-shot"><img src="site-progress.webp" alt="Building under construction with scaffolding"><span class="cap">Structural works in progress</span></div>
+      <div class="site-shot"><img src="land-survey.jpg" alt="Land surveying with total station"><span class="cap">Land surveying on site</span></div>
+      <div class="site-shot"><img src="rebar-work.jpg" alt="Reinforced concrete column formwork"><span class="cap">Reinforcement &amp; formwork</span></div>
+      <div class="site-shot"><img src="slab-formwork.jpg" alt="Concrete slab formwork with site team"><span class="cap">Slab casting supervision</span></div>
+      <div class="site-shot"><img src="site-supervision.jpg" alt="Site supervisors reviewing works"><span class="cap">On-site consultancy</span></div>
+      <div class="site-shot"><img src="site-evening.jpg" alt="Evening site survey works"><span class="cap">Site works, evening survey</span></div>
+      <div class="site-shot"><img src="architectural-model.jpg" alt="Architectural scale model presentation"><span class="cap">Architectural model — concept stage</span></div>
+      <div class="site-shot"><img src="render-night-2.jpg" alt="Residential architectural render, night angle"><span class="cap">Concept render — night view</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="estate" id="estate">
+  <div class="section-inner">
+    <div class="eyebrow">Beyond Construction</div>
+    <h2 class="section-title">Real Estate</h2>
+    <div class="estate-wrap">
+      <div class="estate-copy">
+        <p>Mulwanyi International extends beyond building for others — we develop and deal in property, helping individuals and families find and own quality real estate.</p>
+        <p>Whether you're looking to buy land, invest in a development, or need a trusted partner to manage a property project from the ground up, our real estate arm works hand in hand with our construction team to deliver property you can be proud of.</p>
+        <a href="#contact" class="btn btn-outline" style="border-color:var(--black);color:var(--black);">Enquire About Real Estate</a>
+      </div>
+      <div class="estate-visual">
+        <div class="stat"><span class="mono">Land &amp; Property</span><h3>Sales &amp; Development</h3></div>
+        <div class="stat"><span class="mono">Property Management</span><h3>End-to-End Support</h3></div>
+        <div class="stat"><span class="mono">Investment</span><h3>Turning Land Into Legacy</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="eyebrow" style="justify-content:center;">Get In Touch</div>
+    <h2 class="section-title" style="margin-left:auto;margin-right:auto;">Let's build something that lasts</h2>
+    <p>Tell us about your project — a build, a design, a survey or a property enquiry — and our team will get back to you.</p>
+    <div class="contact-details">
+      <div><span>WhatsApp</span><a href="https://wa.me/256709450043" target="_blank" rel="noopener">+256 709 450 043</a></div>
+      <div><span>Email</span><a href="mailto:mulwanyiiccr@gmail.com">mulwanyiiccr@gmail.com</a></div>
+      <div><span>Location</span>Kampala, Uganda</div>
+    </div>
+    <a href="https://wa.me/256709450043" target="_blank" rel="noopener" class="btn btn-solid">Message Us on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div>© <span id="year"></span> Mulwanyi International. All rights reserved.</div>
+  <div>Building Dreams, Creating Legacies.</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
