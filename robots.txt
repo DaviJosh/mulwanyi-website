@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://mulwanyi-website.vercel.app/sitemap.xml

@@ -1,24 +1,57 @@
-MULWANYI INTERNATIONAL WEBSITE
-================================
+MULWANYI INTERNATIONAL — PREMIUM STATIC WEBSITE
+================================================
 
-Files:
-- index.html   Main website
-- style.css    Website design and responsive layout
-- script.js    Mobile menu and form behavior
-- logo.png     Your supplied company logo
+Replace the website files in the existing GitHub/Vercel repository with the files in this package.
 
-HOW TO USE:
-1. Put all four files in the same folder.
-2. Open index.html in a browser, or use VS Code + Live Server.
-3. Replace the placeholder phone, WhatsApp, email and location in index.html.
-4. Replace the project placeholder with your real project photos/details.
-5. Before publishing, connect the contact form to an email or WhatsApp/backend service.
+KEEP YOUR EXISTING IMAGE ASSETS
+--------------------------------
+Do not delete or replace these existing files:
+- logo.png
+- founder-david-joshua.png
+- architectural-model.jpg
+- land-survey.jpg
+- rebar-work.jpg
+- render-day.jpg
+- render-night-1.jpg
+- render-night-2.jpg
+- site-evening.jpg
+- site-progress.webp
+- site-supervision.jpg
+- slab-formwork.jpg
 
-IMPORTANT:
-The contact form is currently a front-end demo. It does not send email until connected to a form service or backend.
+WHAT THIS UPGRADE FIXES
+-----------------------
+- Correct mobile navigation and responsive layout.
+- Consistent typography and spacing.
+- High-contrast, readable text throughout.
+- Professional premium black/ivory/gold visual system.
+- Proper project portfolio using your existing project photos.
+- Separate About, Services, Projects, Founder & CEO, Real Estate and Contact pages.
+- Real company phone, WhatsApp, email and Kampala location.
+- WhatsApp enquiry form.
+- SEO titles/descriptions/canonical URLs.
+- Founder + Organization structured data for search engines.
+- Sitemap covering all public pages.
+- Robots.txt.
+- Basic security headers through vercel.json.
+- Discourages casual image saving (not absolute protection).
 
+IMPORTANT ABOUT PHOTOS
+----------------------
+Because the GitHub repository is public, the image files are publicly accessible.
+No website can make browser images impossible to copy: screenshots, developer tools,
+direct image URLs and repository access can still be used. The JavaScript/CSS here only
+discourages casual right-click/drag saving. If strong photo protection is required,
+move original/high-resolution photos to a private image storage/CDN and publish only
+optimized/watermarked versions.
 
-FINAL UPDATE: Founder & CEO profile for Mulwanyi David Joshua has been added, with Person + Organization structured data and the founder photograph retained from the supplied project assets.
+CONTACT DETAILS USED
+--------------------
+Phone/WhatsApp: +256 709 450 043
+Email: mulwanyiiccr@gmail.com
+Location: Kampala, Uganda
 
-Founder profile assets: founder-david-joshua.png and founder.html.
-Logo asset updated to the supplied Mulwanyi International logo.
+DEPLOY
+------
+Upload/replace the HTML/CSS/JS/SEO files in the existing repository. Keep the existing
+image assets. Vercel should redeploy automatically after the commit.

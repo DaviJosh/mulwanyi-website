@@ -1,40 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.querySelector(".menu-btn");
+  const menu = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".nav");
-  if (menuBtn && nav) {
-    menuBtn.addEventListener("click", () => {
+  if (menu && nav) {
+    menu.addEventListener("click", () => {
       const open = nav.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menu.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
     });
-    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => nav.classList.remove("open")));
+    nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menu.setAttribute("aria-expanded","false");
+    }));
   }
 
   const form = document.getElementById("quoteForm");
   if (form) {
-    form.addEventListener("submit", e => {
-      e.preventDefault();
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
       const data = new FormData(form);
-      const msg =
-        `Hello Mulwanyi International,%0A%0A` +
-        `Name: ${encodeURIComponent(data.get("name"))}%0A` +
-        `Phone/WhatsApp: ${encodeURIComponent(data.get("phone"))}%0A` +
-        `Project type: ${encodeURIComponent(data.get("project"))}%0A` +
-        `Project details: ${encodeURIComponent(data.get("message") || "Not provided")}`;
-      window.open(`https://wa.me/256709450043?text=${msg}`, "_blank", "noopener");
+      const name = data.get("name")?.trim() || "";
+      const phone = data.get("phone")?.trim() || "";
+      const email = data.get("email")?.trim() || "";
+      const service = data.get("service") || "";
+      const message = data.get("message")?.trim() || "";
+      const note = document.getElementById("formMessage");
+      if (!name || !phone || !service || !message) {
+        if (note) { note.textContent = "Please complete the required fields."; note.className = "form-note error"; }
+        return;
+      }
+      const text = [
+        "Hello Mulwanyi International,",
+        "",
+        `Name: ${name}`,
+        `Phone/WhatsApp: ${phone}`,
+        `Email: ${email || "Not provided"}`,
+        `Service: ${service}`,
+        "",
+        `Project details: ${message}`
+      ].join("\n");
+      if (note) { note.textContent = "Opening WhatsApp with your enquiry…"; note.className = "form-note success"; }
+      window.open(`https://wa.me/256709450043?text=${encodeURIComponent(text)}`, "_blank", "noopener,noreferrer");
     });
   }
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  document.querySelectorAll("img").forEach(img => {
+    img.addEventListener("contextmenu", e => e.preventDefault());
+    img.addEventListener("dragstart", e => e.preventDefault());
+  });
 
-  // Discourage casual image saving. This is not absolute protection against screenshots or developer tools.
-  document.addEventListener("contextmenu", e => {
-    if (e.target.closest("img,.project-card")) e.preventDefault();
-  });
-  document.addEventListener("dragstart", e => {
-    if (e.target.closest("img,.project-card")) e.preventDefault();
-  });
   document.addEventListener("keydown", e => {
     const blocked = (e.ctrlKey || e.metaKey) && ["s","u"].includes(e.key.toLowerCase());
     if (blocked) e.preventDefault();
   });
+
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
 });
